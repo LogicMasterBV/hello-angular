@@ -14,4 +14,11 @@ export class ProductService {
     const result = this.httpClient.get<Product[]>(this.apiUrl);
     return result;
   }
+  createProduct(product: Partial<Product>): Observable<Product> {
+    return this.httpClient.post<Product>(this.apiUrl, product);
+  }
+  deleteProduct(productId: number): Observable<void> {
+    const url = `${this.apiUrl}/${productId}`;
+    return this.httpClient.delete<void>(url);
+  }
 }

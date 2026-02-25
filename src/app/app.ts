@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { ProductService } from './product-service';
 import {Product} from './product';
 import {toSignal} from '@angular/core/rxjs-interop';
+import { Header } from "./header/header";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

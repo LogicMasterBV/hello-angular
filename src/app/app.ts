@@ -19,7 +19,7 @@ export class App implements OnInit {
   imgs = ["fiore.png", "mare.png"];
   imageCounter = 0;
   selectedImage = signal(this.imgs[this.imageCounter]);
-  products!:Signal<Product[]>;
+  products:Signal<Product[]>;
   // private productService:ProductService;
   // constructor(productService:ProductService){
   //     this.productService = productService;

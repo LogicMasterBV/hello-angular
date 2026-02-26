@@ -11,7 +11,7 @@ export class DeleteProduct {
   constructor(private productService: ProductService) { }
   deleteProduct() {
     if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
-      this.productService.deleteProduct(1002).subscribe({
+      this.productService.deleteProduct(1000).subscribe({
         next: () => {
           alert('Product deleted successfully');
         },

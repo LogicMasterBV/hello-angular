@@ -1,0 +1,3 @@
+@for(n of names; track n){
+    <app-child [value]="n" (selected)="onValueSelected($event)"></app-child>
+}

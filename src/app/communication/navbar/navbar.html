@@ -1,0 +1,10 @@
+<nav>
+  <span class="title">Esempio di comunicazione via servizio</span>
+  <span>
+    @if (auth.isLoggedIn()) {
+      <p>Benvenuto {{ auth.username() }}</p>
+    } @else {
+      <a routerLink="/login">Esegui la login nel sito</a>
+    }
+  </span>
+</nav>

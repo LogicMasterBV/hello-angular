@@ -1,0 +1,39 @@
+<p>add-product works!</p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- usa CommonModule e FormsModule -->
+    <!-- (ngSubmit)="stuff()" è un evento -->
+    <form #productForm="ngForm" (ngSubmit)="saveProduct(productForm)">
+        <!-- 
+            la sintassi [(stuff)] è un "banana in the box", rappresenta una 
+            relazione "bidirezionale" (da .html a .ts, e da .ts ad .html)
+            [(ngModel)]="product.productName" collega il valore di <input name="productName"
+            al valore .productName di product nel .ts
+
+            <input type="text" name="productName" [(ngModel)]="product.productName" placeholder="product name"><br>
+        -->
+        <input type="text" name="productName" ngModel placeholder="product name"><br>
+        
+        <label for="supplierId">selezione un Supplier</label><br>
+        <select name="supplierId" id="supplierId" [(ngModel)]="product.supplierId">
+        @for(s of supplierMinimals(); track s.supplierId){
+            <option [value]="s.supplierId">{{ s.companyName }}</option>
+        }
+        </select><br>
+
+        <input type="number" name="categoryId" [(ngModel)]="product.categoryId" placeholder="category id"><br>
+        <input type="number" name="unitprice" [(ngModel)]="product.unitprice" placeholder="unit price"><br>
+        <label for="discontinued">discontinued</label>
+        <input type="checkbox" name="discontinued" [(ngModel)]="product.discontinued" id="discontinued"><br>
+
+        <button type="submit" >Conferma</button>
+    </form>
+</body>
+</html>

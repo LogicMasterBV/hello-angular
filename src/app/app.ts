@@ -1,14 +1,18 @@
-import { Component, signal } from '@angular/core';
+import {Component, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from './product-service';
+import {Product} from './product';
+import {toSignal} from '@angular/core/rxjs-interop';
+import { Header } from "./header/header";
+import {Navbar} from './communication/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   // IN precedenza veniva usata la libreria "zone.js"
   protected readonly title = signal('A lunedi');
   counter = signal(4);
@@ -16,18 +20,33 @@ export class App {
   imgs = ["fiore.png", "mare.png"];
   imageCounter = 0;
   selectedImage = signal(this.imgs[this.imageCounter]);
-
+  products:Signal<Product[]>;
   // private productService:ProductService;
   // constructor(productService:ProductService){
   //     this.productService = productService;
   // }
 
-  constructor(private productService:ProductService){}
+  constructor(private productService:ProductService){
+    const observable = this.productService.getProducts();
+    const productsSignal = toSignal(observable, { initialValue : [] });
+    this.products = productsSignal;
+  }
+
+  ngOnInit(): void {
+
+    }
+  /*ngOnInit() {
+    const observable = this.productService.getProducts();
+    observable.subscribe({
+      next: ps=>this.products = signal(ps),
+      error:er=>console.log(er),
+    })*/
+
   // Questa componente deve creare una tabella con i dati
   // dell'interfaccia. suggerimento: @for
-  // La cella dell'available, se true, backroud verde, 
+  // La cella dell'available, se true, backroud verde,
   // altrimenti rosso. suggerimento: cambiare stile css
-  // a seconda di una certa condizione. 
+  // a seconda di una certa condizione.
   // Usare keyword angular @if per gestire la cella available
 
   increment(){

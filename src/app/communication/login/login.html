@@ -1,0 +1,8 @@
+@if (!auth.isLoggedIn()) {
+  <input type="text" placeholder="Inserisci il tuo username" [(ngModel)]="newUsername">
+  <button (click)="login()">Log in</button>
+} @else {
+  <p>Sei loggato come {{ auth.username() }}</p>
+  <button (click)="logout()">Log out</button>
+}
+

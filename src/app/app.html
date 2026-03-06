@@ -1,13 +1,38 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<h1>Hello, {{ title() }}</h1>
+<p>Congratulations! Your app is running. 🎉</p>
 
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
-  
-      <p>Il valore del contatore e' {{counter()}}.</p>
-      <button (click) = "increment()">Aggiorna il contatore</button>
-      @for(n of nums(); track $index) {
-            <div>{{n}}</div>
+<p>Il valore del contatore e' {{counter()}}.</p>
+<button (click)="increment()">Aggiorna il contatore</button>
+@for(n of nums(); track $index) {
+<div>{{n}}</div>
+}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name </th>
+      <th>Price </th>
+      <th>Available</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(p of products(); track p.productId){
+    <tr>
+      <td>{{p.productId}}</td>
+      <td>{{p.productName}}</td>
+      <td>{{p.unitprice}}</td>
+      <!--<td [class.isAvailable]="p.available" [class.notAvailable]="!p.available">{{p.available}}</td> -->
+      <!-- <td [class]="{ isAvailable : p.available, notAvailable : !p.available }">{{p.available}}</td>  -->
+      @if (p.discontinued) {
+      <td class="isAvailable">{{p.discontinued}}</td>
+      } @else {
+      <td class="notAvailable">{{p.discontinued}}</td>
       }
-      
-      <img [src] = "'/img/' + selectedImage()">
-
+    </tr>
+    }
+  </tbody>
+</table>
+<img [src]="'/img/' + selectedImage()">
 <router-outlet />

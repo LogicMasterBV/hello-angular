@@ -4,10 +4,11 @@ import { ProductService } from './product-service';
 import {Product} from './product';
 import {toSignal} from '@angular/core/rxjs-interop';
 import { Header } from "./header/header";
+import {Navbar} from './communication/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
